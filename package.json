@@ -1,0 +1,15 @@
+{
+  "name": "hiragana-practice",
+  "version": "0.3.0",
+  "private": true,
+  "description": "指でひらがな・カタカナをなぞって覚える練習アプリ",
+  "type": "module",
+  "scripts": {
+    "serve": "python -m http.server 8143 --directory app",
+    "test": "node tools/verify.mjs",
+    "test:mobile": "node tools/verify_mobile.mjs"
+  },
+  "devDependencies": {
+    "puppeteer": "25.7.0"
+  }
+}

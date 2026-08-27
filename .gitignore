@@ -1,0 +1,7 @@
+node_modules/
+npm-debug.log*
+
+# Generated test artifacts
+work/qa/
+work/qa-mobile/
+work/enc_test.txt

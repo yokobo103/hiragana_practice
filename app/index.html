@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#fff6e9">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="なぞりん">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.92em%22 font-size=%2288%22>%E2%9C%8F%EF%B8%8F</text></svg>">
+<title>なぞりん — ひらがな・カタカナ</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ===== ひょう(50音表) ===== -->
+<section id="screen-table" class="screen is-on">
+  <header class="topbar">
+    <h1 class="logo">✏️ なぞりん</h1>
+    <button id="btn-book" class="mini book">📖 <span id="book-count">0</span></button>
+    <button id="btn-reset" class="mini" title="さいしょから">🗑</button>
+  </header>
+
+  <div class="seg" id="kana-switch">
+    <button class="seg-btn is-on" data-kana="hira">ひらがな</button>
+    <button class="seg-btn" data-kana="kata">カタカナ</button>
+  </div>
+
+  <div class="tabs" id="tabs">
+    <button class="tab is-on" data-set="seion">あいうえお</button>
+    <button class="tab" data-set="dakuon">だくおん</button>
+    <button class="tab" data-set="small">ちいさいじ</button>
+  </div>
+
+  <div id="grid" class="grid"></div>
+
+  <p class="progress" id="progress"></p>
+  <p class="credit">もじの かたち: <a href="https://kanjivg.tagaini.net" target="_blank" rel="noopener">KanjiVG</a> (CC BY-SA 3.0)</p>
+</section>
+
+<!-- ===== なぞる ===== -->
+<section id="screen-trace" class="screen">
+  <header class="topbar">
+    <button id="btn-back" class="mini">← もどる</button>
+    <div class="word" id="word"></div>
+    <button id="btn-say" class="mini" title="よみあげ">🔊</button>
+  </header>
+
+  <div class="stage">
+    <div class="canvas-wrap">
+      <canvas id="canvas"></canvas>
+      <div id="praise" class="praise"></div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <button id="btn-demo" class="btn ghost">👀 おてほん</button>
+    <button id="btn-again" class="btn ghost">↺ もういちど</button>
+    <button id="btn-next" class="btn primary">つぎ →</button>
+  </div>
+</section>
+
+<!-- ===== ずかん ===== -->
+<section id="screen-book" class="screen">
+  <header class="topbar">
+    <button id="btn-book-back" class="mini">← もどる</button>
+    <h2 class="logo book-title">📖 ずかん</h2>
+    <span class="mini ghosty" id="book-total">0</span>
+  </header>
+
+  <div class="seg" id="book-switch">
+    <button class="seg-btn is-on" data-kana="hira">ひらがな</button>
+    <button class="seg-btn" data-kana="kata">カタカナ</button>
+  </div>
+
+  <div id="book" class="book"></div>
+</section>
+
+<!-- ===== ごほうび（行コンプリート） ===== -->
+<div id="reward" class="reward">
+  <div class="reward-card">
+    <p class="reward-title" id="reward-title"></p>
+    <div class="reward-emojis" id="reward-emojis"></div>
+    <p class="reward-sub">ずかんに 1ページ ふえた！</p>
+    <button class="btn primary" id="reward-ok">やった！</button>
+  </div>
+</div>
+
+<svg id="measure" width="0" height="0" aria-hidden="true"><path id="measure-path"></path></svg>
+
+<canvas id="confetti" class="confetti"></canvas>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

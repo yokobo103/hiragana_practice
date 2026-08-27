@@ -1,0 +1,45 @@
+name: Browser tests
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - run: npm ci
+      - name: Start the app
+        run: |
+          python -m http.server 8143 --directory app &
+          for attempt in {1..20}; do
+            curl --fail --silent http://127.0.0.1:8143/ > /dev/null && exit 0
+            sleep 1
+          done
+          exit 1
+      - name: Run desktop browser tests
+        run: npm test
+      - name: Run mobile browser tests
+        run: npm run test:mobile
+      - name: Upload screenshots on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-test-screenshots
+          path: |
+            work/qa/
+            work/qa-mobile/
+          if-no-files-found: ignore
