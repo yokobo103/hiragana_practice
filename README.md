@@ -4,6 +4,8 @@
 書いた線はそのまま残り、お手本との似ぐあいで点がつく。
 ビルド不要の素のHTML/CSS/JS。スマホ・タブレット縦持ち前提。
 
+公開版: <https://yokobo103.github.io/hiragana_practice/>
+
 ## うごかす
 
 ```bash
